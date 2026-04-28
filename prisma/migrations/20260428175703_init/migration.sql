@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "TestResult" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "sessionId" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
+    "score" REAL NOT NULL,
+    "completedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model TestResult {
+  id          Int      @id @default(autoincrement())
+  sessionId   String
+  category    String
+  score       Float
+  completedAt DateTime @default(now())
+}
