@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pattern Check
+
+A reflection-based quiz platform that helps people understand their personality, relationships, conflicts, attraction patterns, social blind spots, and compatibility.
+
+**Tagline:** See the patterns you may not notice yet.
+
+## What It Is
+
+Pattern Check is a quiz and self-reflection platform where users take tests about personality, relationships, attraction, bias, friendships, conflict, and social patterns. Every quiz contributes to a broader **Pattern Profile** that reveals patterns over time.
+
+## Features (Phase 1 MVP)
+
+- **12 starter quizzes** across 6 categories (Bias & Awareness, Friendship, Dating, Conflict, Compatibility, Identity)
+- **Self Mode + Observer Mode** — every applicable quiz can be about yourself or someone in your life
+- **Pattern Profile** — 12 trait scores that update with every answer
+- **Profile Confidence** system — tracks how developed your profile is (Starter → Developing → Strong → Deep)
+- **Account system** — create account, save results, delete results, delete account
+- **Private by default** — all results are private
+
+## Quiz Categories
+
+1. Bias, Microaggressions & Social Awareness
+2. LGBTQ+ Identity & Attraction
+3. Friendship
+4. Dating & Relationships
+5. Conflict & Communication
+6. Compatibility
+
+## Trait System
+
+Each quiz answer updates one or more of 12 trait buckets:
+
+- Self-Awareness, Empathy, Defensiveness, Conflict Avoidance
+- Boundary Strength, People-Pleasing, Social Perception, Bias Awareness
+- Emotional Availability, Attachment Security, Accountability, Communication Directness
+
+## Tech Stack
+
+- **Next.js 16** (App Router, TypeScript)
+- **Tailwind CSS**
+- **Prisma 7** + SQLite (via libsql)
+- **NextAuth v5** (credentials-based auth, JWT sessions)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Set up environment
+cp .env.example .env
+# Edit .env — set NEXTAUTH_SECRET to a random string
+
+# Run database migration
+npx prisma migrate dev
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Disclaimer
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+These quizzes are for reflection and pattern recognition, not diagnosis, proof, or professional evaluation.
