@@ -13,7 +13,8 @@ import {
 } from "@/lib/storage";
 import { getLevelBadgeColor } from "@/lib/scoring";
 import { UserAccount, TraitScore } from "@/types";
-import { getQuizBySlug, CATEGORY_INFO } from "@/lib/quizzes";
+import { getQuizBySlug } from "@/data/quizzes";
+import { CATEGORY_INFO } from "@/lib/quizzes";
 
 export default function DashboardPage() {
   const [account, setAccount] = useState<UserAccount | null>(null);

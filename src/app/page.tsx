@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { QUIZZES, CATEGORY_INFO } from "@/lib/quizzes";
+import { CATEGORY_INFO } from "@/lib/quizzes";
+import { QUIZ_REGISTRY as QUIZZES } from "@/data/quizzes";
 
 const FEATURED_SLUGS = [
   "am-i-the-problem",

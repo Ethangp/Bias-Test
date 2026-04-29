@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getQuizBySlug, CATEGORY_INFO } from "@/lib/quizzes";
+import { getQuizBySlug } from "@/data/quizzes";
+import { CATEGORY_INFO } from "@/lib/quizzes";
 import {
   calculateResult,
   buildCompletedQuiz,
