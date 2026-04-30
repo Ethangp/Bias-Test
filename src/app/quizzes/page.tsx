@@ -21,7 +21,11 @@ export default function QuizzesPage() {
         if (!quizzes.length) return null;
 
         return (
-          <section key={cat} className="mb-12">
+          <section
+            key={cat}
+            id={`category-${cat}`}
+            className="mb-12 scroll-mt-20"
+          >
             <div className="flex items-center gap-2 mb-5">
               <span className="text-xl">{info?.emoji}</span>
               <h2 className="text-lg font-semibold text-stone-800">

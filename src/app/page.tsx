@@ -19,9 +19,7 @@ export default function HomePage() {
     QUIZZES.find((q) => q.slug === slug)
   ).filter(Boolean);
 
-  const categoryKeys = Array.from(
-    new Set(QUIZZES.map((q) => q.category))
-  ).slice(0, 6);
+  const categoryKeys = Array.from(new Set(QUIZZES.map((q) => q.category)));
 
   return (
     <div>
@@ -170,7 +168,7 @@ export default function HomePage() {
               return (
                 <Link
                   key={cat}
-                  href={`/quizzes?category=${cat}`}
+                  href={`/quizzes#category-${cat}`}
                   className="group bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl p-5 transition-colors"
                 >
                   <div className="text-2xl mb-2">{info.emoji}</div>

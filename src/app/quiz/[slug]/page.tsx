@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { use, useState } from "react";
+import Link from "next/link";
 import { getQuizBySlug } from "@/data/quizzes";
 import { CATEGORY_INFO } from "@/lib/quizzes";
 import {
@@ -27,14 +28,7 @@ export default function QuizPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const [slug, setSlug] = useState<string | null>(null);
-
-  useEffect(() => {
-    params.then(({ slug: s }) => setSlug(s));
-  }, [params]);
-
-  if (!slug) return <div className="min-h-screen" />;
-
+  const { slug } = use(params);
   return <QuizFlow slug={slug} />;
 }
 
@@ -52,10 +46,17 @@ function QuizFlow({ slug }: { slug: string }) {
   if (!quiz) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center">
-        <h1 className="text-2xl font-bold text-stone-800 mb-4">Quiz not found</h1>
-        <a href="/quizzes" className="text-stone-500 hover:text-stone-700 underline">
-          ← Back to all quizzes
-        </a>
+        <h1 className="text-2xl font-bold text-stone-800 mb-4">Test not found</h1>
+        <p className="text-stone-500 mb-6">
+          We couldn&apos;t find a test at this address. It may have been
+          renamed or removed.
+        </p>
+        <Link
+          href="/quizzes"
+          className="text-stone-700 hover:text-stone-900 underline"
+        >
+          ← Back to all tests
+        </Link>
       </div>
     );
   }
@@ -184,18 +185,18 @@ function QuizFlow({ slug }: { slug: string }) {
 
         {/* Actions */}
         <div className="flex flex-wrap gap-3">
-          <a
+          <Link
             href="/quizzes"
             className="bg-stone-100 text-stone-800 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-stone-200 transition-colors"
           >
             Take Another Test
-          </a>
-          <a
+          </Link>
+          <Link
             href="/dashboard"
             className="bg-stone-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-stone-700 transition-colors"
           >
             View My Profile
-          </a>
+          </Link>
           <button
             onClick={() => {
               setAnswers({});

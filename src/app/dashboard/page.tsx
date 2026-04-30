@@ -124,12 +124,21 @@ export default function DashboardPage() {
   const recommendedSlugs = getRecommendedQuizSlugs(account);
   const confidenceColor = getConfidenceLevelColor(profile.confidenceLevel);
 
-  const quizzesNeeded =
+  const completedCount = profile.completedQuizzes.length;
+  const remaining =
     profile.confidenceLevel === "starter"
-      ? `Take ${Math.max(1, 3 - profile.completedQuizzes.length)} more test${profile.completedQuizzes.length === 2 ? "" : "s"} to develop your profile`
+      ? Math.max(1, 3 - completedCount)
       : profile.confidenceLevel === "developing"
-      ? `Take ${Math.max(1, 6 - profile.completedQuizzes.length)} more tests for a stronger profile`
-      : null;
+        ? Math.max(1, 6 - completedCount)
+        : 0;
+  const quizzesNeeded =
+    remaining === 0
+      ? null
+      : `Take ${remaining} more test${remaining === 1 ? "" : "s"} ${
+          profile.confidenceLevel === "starter"
+            ? "to develop your profile"
+            : "for a stronger profile"
+        }`;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
