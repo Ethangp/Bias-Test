@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { getQuizBySlug } from "@/data/quizzes";
 import { CATEGORY_INFO } from "@/lib/quizzes";
 import {
   calculateResult,
   buildCompletedQuiz,
   getLevelColor,
+  getLevelBadgeColor,
   getResultRange,
 } from "@/lib/scoring";
 import { getAccount, addCompletedQuiz } from "@/lib/storage";
@@ -43,6 +45,7 @@ function QuizFlow({ slug }: { slug: string }) {
 
   const [phase, setPhase] = useState<"setup" | "questions" | "done">("setup");
   const [mode, setMode] = useState<QuizMode>("self");
+  const [modeSelected, setModeSelected] = useState<boolean>(false);
   const [observerTarget, setObserverTarget] = useState<ObserverTarget>("friend");
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -53,9 +56,9 @@ function QuizFlow({ slug }: { slug: string }) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center">
         <h1 className="text-2xl font-bold text-stone-800 mb-4">Quiz not found</h1>
-        <a href="/quizzes" className="text-stone-500 hover:text-stone-700 underline">
-          ← Back to all quizzes
-        </a>
+        <Link href="/quizzes" className="text-stone-500 hover:text-stone-700 underline">
+          ← Back to all tests
+        </Link>
       </div>
     );
   }
@@ -64,14 +67,12 @@ function QuizFlow({ slug }: { slug: string }) {
   const questions = quiz.questions;
   const currentQuestion = questions[currentQ];
 
-  const handleModeSelect = (selectedMode: QuizMode) => {
+  const handleModeCardClick = (selectedMode: QuizMode) => {
     setMode(selectedMode);
-    if (selectedMode === "self" || !quiz.hasObserverMode) {
-      setPhase("questions");
-    }
+    setModeSelected(true);
   };
 
-  const handleObserverTargetSelect = () => {
+  const handleStartQuiz = () => {
     setPhase("questions");
   };
 
@@ -82,7 +83,6 @@ function QuizFlow({ slug }: { slug: string }) {
     if (currentQ < questions.length - 1) {
       setTimeout(() => setCurrentQ((q) => q + 1), 300);
     } else {
-      // Done
       setPhase("done");
     }
   };
@@ -99,7 +99,6 @@ function QuizFlow({ slug }: { slug: string }) {
     setSaving(true);
     let account = getAccount();
     if (!account) {
-      // Create a guest account
       const { createAccount } = await import("@/lib/storage");
       account = createAccount("Guest");
     }
@@ -119,31 +118,79 @@ function QuizFlow({ slug }: { slug: string }) {
     setSaving(false);
   };
 
-  // Result screen
+  // ─── Result Page ──────────────────────────────────────────────────────────
   if (phase === "done") {
     const { level } = calculateResult(quiz, answers);
     const resultRange = getResultRange(quiz, level);
     const levelColor = getLevelColor(level);
+    const badgeColor = getLevelBadgeColor(level);
 
     return (
       <div className="max-w-2xl mx-auto px-4 py-12">
-        {/* Result card */}
+        {/* Result header card */}
         <div className={`rounded-2xl border-2 p-8 mb-6 ${levelColor}`}>
-          <div className="text-xs font-semibold uppercase tracking-widest mb-2 opacity-70">
-            Your Result
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs font-semibold uppercase tracking-widest opacity-70">
+              Your Result
+            </span>
+            <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${badgeColor}`}>
+              {resultRange?.label}
+            </span>
           </div>
-          <h1 className="text-2xl font-bold mb-4">{resultRange?.label}</h1>
           <p className="text-base leading-relaxed">{resultRange?.description}</p>
         </div>
+
+        {/* What this means */}
+        {resultRange?.whatThisMeans && (
+          <div className="bg-white border border-stone-200 rounded-xl p-6 mb-4">
+            <h2 className="font-semibold text-stone-800 mb-2 text-sm uppercase tracking-wide">
+              What this means
+            </h2>
+            <p className="text-sm text-stone-600 leading-relaxed">
+              {resultRange.whatThisMeans}
+            </p>
+          </div>
+        )}
+
+        {/* What this does not mean */}
+        {resultRange?.whatThisDoesNotMean && (
+          <div className="bg-stone-50 border border-stone-200 rounded-xl p-6 mb-4">
+            <h2 className="font-semibold text-stone-600 mb-2 text-sm uppercase tracking-wide">
+              What this does not mean
+            </h2>
+            <p className="text-sm text-stone-500 leading-relaxed">
+              {resultRange.whatThisDoesNotMean}
+            </p>
+          </div>
+        )}
+
+        {/* Patterns that showed up */}
+        {resultRange?.patterns && resultRange.patterns.length > 0 && (
+          <div className="bg-white border border-stone-200 rounded-xl p-6 mb-4">
+            <h2 className="font-semibold text-stone-800 mb-3 text-sm uppercase tracking-wide">
+              Patterns that showed up
+            </h2>
+            <ul className="space-y-2">
+              {resultRange.patterns.map((p, i) => (
+                <li key={i} className="flex gap-3 text-sm text-stone-600">
+                  <span className="text-stone-300 mt-0.5 shrink-0">◆</span>
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Next Steps */}
         {resultRange?.nextSteps && resultRange.nextSteps.length > 0 && (
           <div className="bg-white border border-stone-200 rounded-xl p-6 mb-6">
-            <h2 className="font-semibold text-stone-800 mb-4">Suggested Next Steps</h2>
+            <h2 className="font-semibold text-stone-800 mb-3 text-sm uppercase tracking-wide">
+              Next steps
+            </h2>
             <ul className="space-y-2">
               {resultRange.nextSteps.map((step, i) => (
                 <li key={i} className="flex gap-3 text-sm text-stone-600">
-                  <span className="text-stone-400 mt-0.5">→</span>
+                  <span className="text-stone-400 mt-0.5 shrink-0">→</span>
                   <span>{step}</span>
                 </li>
               ))}
@@ -169,7 +216,7 @@ function QuizFlow({ slug }: { slug: string }) {
           </p>
           {saved ? (
             <div className="flex items-center gap-2 text-green-600 text-sm font-medium">
-              <span>✓</span> Saved to your profile
+              <span>✓</span> Saved. Your Pattern Profile has been updated.
             </div>
           ) : (
             <button
@@ -177,30 +224,31 @@ function QuizFlow({ slug }: { slug: string }) {
               disabled={saving}
               className="bg-stone-900 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-stone-700 transition-colors disabled:opacity-50"
             >
-              {saving ? "Saving…" : "Save Result"}
+              {saving ? "Saving…" : "Save to My Profile"}
             </button>
           )}
         </div>
 
         {/* Actions */}
         <div className="flex flex-wrap gap-3">
-          <a
+          <Link
             href="/quizzes"
             className="bg-stone-100 text-stone-800 px-5 py-2.5 rounded-full text-sm font-medium hover:bg-stone-200 transition-colors"
           >
             Take Another Test
-          </a>
-          <a
+          </Link>
+          <Link
             href="/dashboard"
             className="bg-stone-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-stone-700 transition-colors"
           >
             View My Profile
-          </a>
+          </Link>
           <button
             onClick={() => {
               setAnswers({});
               setCurrentQ(0);
               setPhase("setup");
+              setModeSelected(false);
               setSaved(false);
             }}
             className="text-stone-400 hover:text-stone-600 text-sm px-2 py-2.5 transition-colors"
@@ -212,10 +260,22 @@ function QuizFlow({ slug }: { slug: string }) {
     );
   }
 
-  // Setup / mode selection screen
+  // ─── Setup / Start Page ───────────────────────────────────────────────────
   if (phase === "setup") {
+    const canStart = !quiz.hasObserverMode || modeSelected;
+
     return (
-      <div className="max-w-2xl mx-auto px-4 py-12">
+      <div className="max-w-2xl mx-auto px-4 py-10">
+        {/* Back link */}
+        <div className="mb-8">
+          <Link
+            href="/quizzes"
+            className="text-sm text-stone-400 hover:text-stone-600 transition-colors"
+          >
+            ← All Tests
+          </Link>
+        </div>
+
         {/* Quiz header */}
         <div className="mb-8">
           <div className="text-xs text-stone-400 uppercase tracking-wide mb-2">
@@ -224,49 +284,105 @@ function QuizFlow({ slug }: { slug: string }) {
           <h1 className="text-3xl font-bold text-stone-900 mb-3">{quiz.title}</h1>
           <p className="text-stone-500 leading-relaxed">{quiz.description}</p>
           <div className="flex items-center gap-3 mt-3 text-sm text-stone-400">
-            <span>~{quiz.estimatedMinutes} minutes</span>
+            <span>~{quiz.estimatedMinutes} min</span>
             <span>·</span>
             <span>{quiz.questions.length} questions</span>
           </div>
         </div>
 
+        {/* Trait chips */}
+        {quiz.startPageTraits && quiz.startPageTraits.length > 0 && (
+          <div className="mb-8">
+            <div className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-3">
+              This test looks at
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {quiz.startPageTraits.map((trait) => (
+                <span
+                  key={trait}
+                  className="bg-stone-100 text-stone-600 text-xs px-3 py-1.5 rounded-full border border-stone-200"
+                >
+                  {trait}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Mode selection */}
         {quiz.hasObserverMode ? (
-          <div>
+          <div className="mb-6">
             <h2 className="font-semibold text-stone-800 mb-4">
               Who is this test about?
             </h2>
-            <div className="space-y-3 mb-6">
+            <div className="space-y-3 mb-4">
               <button
-                onClick={() => handleModeSelect("self")}
-                className="w-full text-left bg-white border-2 border-stone-200 hover:border-stone-400 rounded-xl p-5 transition-colors"
+                onClick={() => handleModeCardClick("self")}
+                className={`w-full text-left rounded-xl p-5 transition-all border-2 ${
+                  modeSelected && mode === "self"
+                    ? "border-stone-900 bg-stone-50"
+                    : "border-stone-200 bg-white hover:border-stone-400"
+                }`}
               >
-                <div className="font-medium text-stone-900 mb-1">
-                  About myself
-                </div>
-                <div className="text-sm text-stone-500">
-                  Questions will be written in first-person
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-medium text-stone-900 mb-1">
+                      About myself
+                    </div>
+                    <div className="text-sm text-stone-500">
+                      Questions will be written in first person
+                    </div>
+                  </div>
+                  {modeSelected && mode === "self" && (
+                    <div className="w-5 h-5 rounded-full bg-stone-900 flex items-center justify-center shrink-0 ml-4">
+                      <span className="text-white text-xs">✓</span>
+                    </div>
+                  )}
                 </div>
               </button>
+
               <button
-                onClick={() => handleModeSelect("observer")}
-                className="w-full text-left bg-white border-2 border-stone-200 hover:border-stone-400 rounded-xl p-5 transition-colors"
+                onClick={() => handleModeCardClick("observer")}
+                className={`w-full text-left rounded-xl p-5 transition-all border-2 ${
+                  modeSelected && mode === "observer"
+                    ? "border-stone-900 bg-stone-50"
+                    : "border-stone-200 bg-white hover:border-stone-400"
+                }`}
               >
-                <div className="font-medium text-stone-900 mb-1">
-                  About someone else
-                </div>
-                <div className="text-sm text-stone-500">
-                  Questions will ask about another person
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-medium text-stone-900 mb-1">
+                      About someone else
+                    </div>
+                    <div className="text-sm text-stone-500">
+                      Questions will ask about another person
+                    </div>
+                  </div>
+                  {modeSelected && mode === "observer" && (
+                    <div className="w-5 h-5 rounded-full bg-stone-900 flex items-center justify-center shrink-0 ml-4">
+                      <span className="text-white text-xs">✓</span>
+                    </div>
+                  )}
                 </div>
               </button>
             </div>
 
+            {/* Mode-specific helper copy */}
+            {modeSelected && (
+              <div className="bg-stone-50 border border-stone-200 rounded-lg px-4 py-3 mb-5 text-sm text-stone-500 leading-relaxed">
+                {mode === "self"
+                  ? "Questions will be written in first person and focus on your reactions, communication, and role in the situation."
+                  : "Questions will ask about observable behavior. The result should be treated as a pattern read, not proof of someone's intent."}
+              </div>
+            )}
+
             {/* Observer target selector */}
-            {mode === "observer" && (
-              <div className="mt-4">
+            {modeSelected && mode === "observer" && (
+              <div className="mb-6">
                 <h3 className="font-medium text-stone-800 mb-3 text-sm">
                   Who are you thinking about?
                 </h3>
-                <div className="grid grid-cols-2 gap-2 mb-6">
+                <div className="grid grid-cols-2 gap-2">
                   {OBSERVER_TARGETS.map((target) => (
                     <button
                       key={target.value}
@@ -281,32 +397,51 @@ function QuizFlow({ slug }: { slug: string }) {
                     </button>
                   ))}
                 </div>
-                <button
-                  onClick={handleObserverTargetSelect}
-                  className="bg-stone-900 text-white px-8 py-3 rounded-full font-medium hover:bg-stone-700 transition-colors"
-                >
-                  Start Test →
-                </button>
               </div>
             )}
           </div>
-        ) : (
-          <button
-            onClick={() => setPhase("questions")}
-            className="bg-stone-900 text-white px-8 py-3 rounded-full font-medium hover:bg-stone-700 transition-colors"
-          >
-            Start Test →
-          </button>
-        )}
+        ) : null}
 
-        {quiz.disclaimer && (
-          <p className="text-xs text-stone-400 italic mt-8">{quiz.disclaimer}</p>
-        )}
+        {/* What you'll get */}
+        <div className="bg-white border border-stone-200 rounded-xl p-5 mb-6">
+          <div className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-3">
+            What you&apos;ll get
+          </div>
+          <ul className="space-y-2">
+            {[
+              "A reflection-based result about patterns in your answers",
+              "Patterns that showed up based on how you responded",
+              "Profile impact when you choose to save the result",
+            ].map((item, i) => (
+              <li key={i} className="flex gap-3 text-sm text-stone-600">
+                <span className="text-stone-400 shrink-0 mt-0.5">→</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Start button */}
+        <button
+          onClick={handleStartQuiz}
+          disabled={!canStart}
+          className="w-full sm:w-auto bg-stone-900 text-white px-8 py-3 rounded-full font-medium hover:bg-stone-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed mb-6"
+        >
+          {quiz.hasObserverMode && !modeSelected
+            ? "Select a mode to continue"
+            : "Start Quiz →"}
+        </button>
+
+        {/* Disclaimer */}
+        <p className="text-xs text-stone-400 italic">
+          {quiz.disclaimer ??
+            "This quiz is for reflection and pattern recognition. It does not diagnose, prove fault, or label anyone."}
+        </p>
       </div>
     );
   }
 
-  // Questions screen
+  // ─── Questions Screen ─────────────────────────────────────────────────────
   const progress = ((currentQ + 1) / questions.length) * 100;
 
   return (
@@ -333,12 +468,17 @@ function QuizFlow({ slug }: { slug: string }) {
       </div>
 
       {/* Question */}
-      <div className="mb-8">
-        <h2 className="text-xl font-semibold text-stone-900 leading-snug">
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold text-stone-900 leading-snug mb-2">
           {mode === "self"
             ? currentQuestion.selfText
             : currentQuestion.observerText}
         </h2>
+        {currentQuestion.helperText && (
+          <p className="text-sm text-stone-400 leading-relaxed">
+            {currentQuestion.helperText}
+          </p>
+        )}
       </div>
 
       {/* Answer options */}

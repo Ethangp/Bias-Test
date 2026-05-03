@@ -62,6 +62,7 @@ export interface Question {
   id: string;
   selfText: string;
   observerText: string;
+  helperText?: string;
   options: AnswerOption[];
 }
 
@@ -71,6 +72,10 @@ export interface ResultRange {
   description: string;
   nextSteps: string[];
   traitInsight?: string;
+  // Enhanced result fields (optional, used for richer result pages)
+  whatThisMeans?: string;
+  whatThisDoesNotMean?: string;
+  patterns?: string[];
 }
 
 export interface Quiz {
@@ -88,6 +93,9 @@ export interface Quiz {
   disclaimer?: string;
   estimatedMinutes: number;
   tags: string[];
+  // Optional fields for richer UI
+  startPageTraits?: string[];
+  comingSoon?: boolean;
 }
 
 // Profile types

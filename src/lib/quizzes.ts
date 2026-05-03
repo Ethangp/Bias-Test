@@ -15,6 +15,7 @@ export const QUIZZES: Quiz[] = [
     isIdentityQuiz: false,
     estimatedMinutes: 5,
     tags: ["conflict", "self-awareness", "accountability"],
+    startPageTraits: ["Accountability", "Defensiveness", "Communication", "Empathy", "Self-awareness"],
     traitWeights: {
       selfAwareness: 3,
       accountability: 3,
@@ -292,6 +293,7 @@ export const QUIZZES: Quiz[] = [
     isIdentityQuiz: false,
     estimatedMinutes: 5,
     tags: ["friendship", "toxic", "boundaries", "red-flags"],
+    startPageTraits: ["Boundaries", "Social perception", "Emotional availability", "Reciprocity", "Trust"],
     traitWeights: {
       boundaryStrength: 3,
       socialPerception: 2,
@@ -560,6 +562,7 @@ export const QUIZZES: Quiz[] = [
     isIdentityQuiz: false,
     estimatedMinutes: 6,
     tags: ["bias", "dating", "race", "attraction", "preferences"],
+    startPageTraits: ["Bias awareness", "Attraction patterns", "Defensiveness", "Consistency", "Social awareness"],
     traitWeights: {
       biasAwareness: 4,
       defensiveness: 2,
@@ -2240,6 +2243,7 @@ export const QUIZZES: Quiz[] = [
     isIdentityQuiz: false,
     estimatedMinutes: 5,
     tags: ["conflict", "emotions", "self-awareness", "overreacting"],
+    startPageTraits: ["Emotional intensity", "Context", "Self-trust", "Communication", "Conflict style"],
     traitWeights: {
       selfAwareness: 3,
       emotionalAvailability: 2,
