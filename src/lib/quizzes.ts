@@ -230,7 +230,15 @@ export const QUIZZES: Quiz[] = [
         level: 1,
         label: "Low Concern",
         description:
-          "Based on your answers, you seem self-aware and accountable in conflict. You're probably not the main source of the tension here. That said, no one is perfect — keep checking in with yourself.",
+          "Based on your answers, you seem self-aware and accountable in conflict. You're probably not the main source of the tension here.",
+        whatThisMeans:
+          "You may already be doing many things that help conflict move forward — listening, checking your role, and trying to understand impact.",
+        whatThisDoesNotMean:
+          "This does not mean you never contribute to conflict. It only suggests your current pattern doesn't look strongly defensive.",
+        patterns: [
+          "You may be able to slow a conversation down before it escalates.",
+          "You seem willing to reflect on your part after the fact.",
+        ],
         nextSteps: [
           "Ask someone you trust for honest feedback on how you handle conflict",
           "Notice if any specific situations bring out your worst reactions",
@@ -240,7 +248,15 @@ export const QUIZZES: Quiz[] = [
         level: 2,
         label: "Mild Pattern",
         description:
-          "There are a few patterns worth paying attention to. You may have some blind spots around how you come across during conflict — not necessarily a big problem, but worth reflecting on.",
+          "There are a few patterns worth paying attention to. You may have some blind spots around how you come across during conflict.",
+        whatThisMeans:
+          "You may be contributing to conflict in some moments, especially when feedback feels personal or unfair.",
+        whatThisDoesNotMean:
+          "This does not prove blame or bad intent. It points to habits that may be worth adjusting.",
+        patterns: [
+          "You may explain your side quickly before fully hearing the other person.",
+          "You may need time to process before accountability feels possible.",
+        ],
         nextSteps: [
           "Try pausing for 24 hours before responding in a heated situation",
           "Ask the other person what they specifically need from you",
@@ -250,7 +266,15 @@ export const QUIZZES: Quiz[] = [
         level: 3,
         label: "Mixed / Unclear",
         description:
-          "Your answers suggest a mixed picture. In some ways you handle conflict well, in others you may be contributing to the tension without fully realizing it. More reflection may help clarify what's happening.",
+          "Your answers suggest a mixed picture. In some ways you handle conflict well; in others you may be contributing to the tension without fully realizing it.",
+        whatThisMeans:
+          "You may handle conflict well in some moments and struggle in others. More context matters.",
+        whatThisDoesNotMean:
+          "This is not a verdict. It does not prove that you are the main cause of any conflict.",
+        patterns: [
+          "You may switch between reflection and self-protection depending on the situation.",
+          "Certain topics may bring out a sharper response.",
+        ],
         nextSteps: [
           "Revisit the conflict from the other person's perspective specifically",
           "Consider whether this is a recurring pattern or a unique situation",
@@ -260,7 +284,15 @@ export const QUIZZES: Quiz[] = [
         level: 4,
         label: "Strong Pattern",
         description:
-          "Your answers suggest you may be contributing significantly to the conflict. This doesn't mean you're entirely at fault, but there are real patterns here worth addressing — especially around defensiveness and accountability.",
+          "Your answers suggest you may be contributing significantly to the conflict. This doesn't mean you're entirely at fault, but there are real patterns here worth addressing.",
+        whatThisMeans:
+          "You may be contributing more to the conflict than you realize, especially when feedback feels critical.",
+        whatThisDoesNotMean:
+          "This does not prove fault or bad character. It points to a pattern worth examining with more care.",
+        patterns: [
+          "You may move into explanation mode before the other person feels heard.",
+          "Repair may be harder when you feel misunderstood.",
+        ],
         nextSteps: [
           "Try to have a calm, honest conversation with the other person",
           "Consider speaking with a therapist or trusted mentor about your conflict patterns",
@@ -271,6 +303,14 @@ export const QUIZZES: Quiz[] = [
         label: "High Concern",
         description:
           "Based on these answers, there's a strong pattern of behavior that may be causing serious harm in your relationships. This isn't about blame — it's about recognizing what needs to change.",
+        whatThisMeans:
+          "This result points to a pattern, not a moral label. It suggests your responses may be making repair much harder.",
+        whatThisDoesNotMean:
+          "This does not prove you are always wrong or that the other person is always right. More context matters.",
+        patterns: [
+          "You may feel attacked quickly and then stop hearing the other person.",
+          "Repair may be turning into explanation, denial, or shutdown.",
+        ],
         nextSteps: [
           "Reach out to the person you've hurt and take genuine accountability",
           "Consider professional support to work through these patterns",
@@ -497,7 +537,15 @@ export const QUIZZES: Quiz[] = [
         level: 1,
         label: "Low Concern",
         description:
-          "This friendship seems fairly healthy based on your answers. There's no strong pattern of toxicity here. All relationships have rough patches — this doesn't look like a toxic pattern.",
+          "This friendship seems fairly healthy based on your answers. There's no strong pattern here that looks like toxicity.",
+        whatThisMeans:
+          "The answers suggest this friendship has a reasonably balanced dynamic. You seem to feel supported and respected.",
+        whatThisDoesNotMean:
+          "This does not mean the friendship is perfect. All friendships have rough patches.",
+        patterns: [
+          "You seem to feel generally good or neutral after time with this person.",
+          "Boundaries appear to be respected in most situations.",
+        ],
         nextSteps: [
           "Keep communicating openly when things feel off",
           "Appreciate what's working well in this friendship",
@@ -505,9 +553,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 2,
-        label: "Mild Pattern",
+        label: "Some draining patterns",
         description:
-          "A few things are worth noticing. This friendship may have some imbalanced or draining moments — not necessarily toxic, but it could benefit from a clearer conversation about your needs.",
+          "A few things are worth noticing. This friendship may have some imbalanced or draining moments — not necessarily toxic, but worth reflecting on.",
+        whatThisMeans:
+          "The answers suggest this friendship may have patterns that feel slightly one-sided or emotionally tiring.",
+        whatThisDoesNotMean:
+          "This does not mean your friend is a bad person or that the friendship needs to end.",
+        patterns: [
+          "You may feel drained or slightly off after some interactions.",
+          "Emotional support may flow more in one direction than the other.",
+        ],
         nextSteps: [
           "Name one specific thing that bothers you and bring it up directly",
           "Notice whether things improve after you address it",
@@ -515,9 +571,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 3,
-        label: "Mixed / Unclear",
+        label: "Mixed friendship dynamic",
         description:
-          "The friendship has both supportive and concerning patterns. It's hard to call it simply toxic or healthy. Context matters — is this person going through something, or is this their consistent behavior?",
+          "The friendship has both supportive and concerning patterns. Context matters — is this person going through something, or is this their consistent behavior?",
+        whatThisMeans:
+          "The answers suggest this friendship may have patterns that feel draining or one-sided in some areas.",
+        whatThisDoesNotMean:
+          "This does not prove your friend is toxic or that they intend harm.",
+        patterns: [
+          "There may be moments of genuine support alongside moments that feel dismissive.",
+          "Your emotional availability for this person may exceed theirs for you.",
+        ],
         nextSteps: [
           "Reflect on whether the concerning patterns are new or longstanding",
           "Have an honest conversation about how this dynamic has been feeling",
@@ -525,9 +589,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 4,
-        label: "Strong Pattern",
+        label: "Strong unhealthy pattern",
         description:
-          "There are consistent patterns here that look like emotional toxicity — minimizing your feelings, ignoring your wins, or crossing boundaries repeatedly. This is worth taking seriously.",
+          "There are consistent patterns here that suggest this friendship may be emotionally draining or harmful. This is worth taking seriously.",
+        whatThisMeans:
+          "The answers suggest this friendship may have patterns that feel draining or one-sided in ways that are affecting you.",
+        whatThisDoesNotMean:
+          "This does not mean your friend is a bad person — only that the current dynamic may not be healthy for you.",
+        patterns: [
+          "You may regularly feel worse after spending time with this person.",
+          "Boundaries may be repeatedly tested or ignored.",
+        ],
         nextSteps: [
           "Consider setting clear limits on what you will and won't accept",
           "Think about whether this friendship still serves you",
@@ -535,9 +607,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 5,
-        label: "High Concern",
+        label: "High concern pattern",
         description:
-          "Based on your answers, this friendship may be significantly harming your wellbeing. A pattern of repeated disrespect, boundary violations, or emotional manipulation is serious.",
+          "Based on your answers, this friendship may be significantly impacting your wellbeing. A pattern of repeated disrespect, boundary violations, or emotional imbalance is serious.",
+        whatThisMeans:
+          "The answers suggest strong patterns of emotional harm in this friendship. This deserves attention.",
+        whatThisDoesNotMean:
+          "This does not mean you should immediately end the friendship — but the current dynamic may need to change significantly.",
+        patterns: [
+          "You may feel consistently drained, anxious, or undervalued in this relationship.",
+          "Attempts to set limits may be met with guilt or dismissal.",
+        ],
         nextSteps: [
           "Consider creating distance or ending the friendship",
           "Talk to someone you trust about what you're experiencing",
@@ -760,9 +840,17 @@ export const QUIZZES: Quiz[] = [
     results: [
       {
         level: 1,
-        label: "Low Concern",
+        label: "Mostly consistent preference",
         description:
-          "Based on your answers, your dating preferences don't show strong signs of racial exclusion. Your openness and self-reflection suggest genuine attraction rather than avoidance-based bias.",
+          "Based on your answers, your dating preferences don't show strong signs of racial exclusion. Your openness and self-reflection suggest genuine attraction rather than avoidance-based patterns.",
+        whatThisMeans:
+          "The answers suggest your preferences appear to be based more on individual connection than group-wide exclusion.",
+        whatThisDoesNotMean:
+          "This does not mean your preferences are completely free of cultural influence — no one's are. It means the patterns here don't look like strong exclusion.",
+        patterns: [
+          "You may be open to attraction across different backgrounds.",
+          "You seem willing to reflect on where your preferences come from.",
+        ],
         nextSteps: [
           "Keep reflecting on whether your preferences change as you meet more people",
           "Stay open to examining assumptions if they come up",
@@ -770,9 +858,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 2,
-        label: "Some Patterns Worth Noticing",
+        label: "Some patterns worth noticing",
         description:
-          "There are a few patterns that are worth thinking about. Some of your preferences may involve general assumptions about racial groups rather than purely individual-based attraction.",
+          "There are a few patterns worth thinking about. The answers suggest this may be more than a fully neutral preference — but it's not clear-cut.",
+        whatThisMeans:
+          "Some of your preferences may involve assumptions about racial groups rather than purely individual-based attraction. That's worth reflecting on.",
+        whatThisDoesNotMean:
+          "This does not prove bias or intent. Attraction is complex and often shaped by things we didn't choose.",
+        patterns: [
+          "You may apply your 'type' more consistently across some groups than others.",
+          "There may be some defensiveness when the pattern is named.",
+        ],
         nextSteps: [
           "Ask yourself where your 'type' came from and when it formed",
           "Notice whether your preferences are truly individual-based or category-based",
@@ -780,9 +876,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 3,
-        label: "Possible Bias or Avoidance",
+        label: "Mixed or unclear",
         description:
-          "Your answers suggest there may be patterns of racial exclusion that go beyond personal preference. This doesn't prove intent, but it may be worth examining more carefully.",
+          "Your answers suggest there may be patterns of exclusion worth examining — but the picture isn't fully clear. More reflection may help.",
+        whatThisMeans:
+          "The answers suggest this may be more than a neutral preference. It's worth taking a closer look.",
+        whatThisDoesNotMean:
+          "This does not prove intent, bias, or that any specific person was harmed. It is a pattern read, not a verdict.",
+        patterns: [
+          "Your preferences may shift depending on context or proximity.",
+          "There may be comfort with certain groups' culture but not with dating from those groups.",
+        ],
         nextSteps: [
           "Reflect on what messages you absorbed growing up about who is attractive",
           "Consider whether your 'type' was shaped by cultural bias rather than personal experience",
@@ -790,9 +894,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 4,
-        label: "Strong Pattern of Bias",
+        label: "Possible bias pattern",
         description:
           "There's a consistent pattern here that looks more like racial exclusion than individual preference. The combination of wholesale exclusion and defensiveness when questioned is worth reflecting on seriously.",
+        whatThisMeans:
+          "The answers suggest this may be more than a neutral preference — it may involve learned exclusion or discomfort that has a real impact on others.",
+        whatThisDoesNotMean:
+          "This does not prove you are racist or that your intent is harmful. It suggests a pattern worth examining with real honesty.",
+        patterns: [
+          "Certain groups may be entirely excluded with no individual exceptions.",
+          "Questions about this pattern may bring up defensiveness rather than curiosity.",
+        ],
         nextSteps: [
           "Ask yourself honestly: would you rule out an entire racial group if they were otherwise perfect for you?",
           "Consider what it would feel like to be on the receiving end of this preference",
@@ -800,9 +912,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 5,
-        label: "High Concern",
+        label: "Strong exclusion pattern",
         description:
-          "The patterns here strongly suggest racial bias rather than individual preference. This is not about judging who you date — it's about recognizing what may be shaping your choices and its impact on others.",
+          "The patterns here strongly suggest racial exclusion rather than individual preference. This is not about judgment — it's about recognizing what may be shaping your choices and its impact.",
+        whatThisMeans:
+          "The answers suggest a consistent pattern of exclusion based on race. This is worth taking seriously regardless of intent.",
+        whatThisDoesNotMean:
+          "This does not prove what you believe about any group. It reflects patterns in your stated preferences and reactions, not your full identity.",
+        patterns: [
+          "Entire groups may be categorically excluded regardless of individual connection.",
+          "There may be strong resistance to examining where these patterns come from.",
+        ],
         nextSteps: [
           "Speak with someone you trust about where these patterns came from",
           "Read or listen to people from excluded groups on how racial preferences affect them",
@@ -2398,9 +2518,17 @@ export const QUIZZES: Quiz[] = [
     results: [
       {
         level: 1,
-        label: "Probably Not Overreacting",
+        label: "Probably not overreacting",
         description:
           "Your reaction seems proportionate. You're showing self-awareness and keeping things in perspective — even when they're legitimately bothering you.",
+        whatThisMeans:
+          "Your answers suggest your emotional response fits the situation. The way you're processing this doesn't show signs of spiraling.",
+        whatThisDoesNotMean:
+          "This does not invalidate your feelings or mean the situation doesn't matter. It means your reaction appears grounded in what actually happened.",
+        patterns: [
+          "You seem to be processing the situation with some clarity.",
+          "You may be able to name what hurt and why.",
+        ],
         nextSteps: [
           "Trust your own read of the situation",
           "Name what you need directly to the other person",
@@ -2408,9 +2536,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 2,
-        label: "Slightly Heightened, But Understandable",
+        label: "Some emotional intensity",
         description:
-          "Your reaction is a little intense relative to the situation, but it's understandable. There may be some history or sensitivity that's making this feel bigger.",
+          "Your reaction is a little intense relative to the situation, but it's understandable. There may be some history or sensitivity making this feel bigger.",
+        whatThisMeans:
+          "Your reaction may be understandable, but the way it is being processed could be making the situation feel larger than it is.",
+        whatThisDoesNotMean:
+          "This does not mean your feelings are wrong or that you are overreacting completely.",
+        patterns: [
+          "There may be a past pattern that this situation is connecting to.",
+          "The emotional intensity may be slightly higher than the current facts alone explain.",
+        ],
         nextSteps: [
           "Give yourself some time before responding",
           "Ask: is this about this moment, or does something deeper feel threatened?",
@@ -2418,9 +2554,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 3,
-        label: "Mixed — Hard to Tell",
+        label: "Mixed — needs more context",
         description:
-          "It's genuinely hard to say. Your reaction may be proportionate — or it may be amplified by past experiences or patterns. More reflection will help clarify which.",
+          "It's genuinely hard to say. Your reaction may be proportionate — or it may be amplified by past experiences or patterns.",
+        whatThisMeans:
+          "The answers suggest this could go either way. More context may be affecting how big this feels.",
+        whatThisDoesNotMean:
+          "This does not mean you are wrong to feel what you're feeling. The picture isn't clear from your answers alone.",
+        patterns: [
+          "The intensity may shift when you have more distance from the moment.",
+          "Assumptions about intent may be filling in gaps in what you actually know.",
+        ],
         nextSteps: [
           "Talk it through with someone who isn't involved",
           "Notice whether your intensity decreases after some time passes",
@@ -2428,9 +2572,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 4,
-        label: "Possibly Overreacting",
+        label: "Possible overthinking loop",
         description:
-          "Based on your answers, your reaction may be more intense than the situation warrants. That doesn't mean your feelings aren't real — but something beyond this situation might be fueling them.",
+          "Based on your answers, your reaction may be more intense than the situation warrants. Your feelings are real — but something beyond this situation might be fueling them.",
+        whatThisMeans:
+          "Your reaction may be understandable, but the way it is being processed could be making the situation feel bigger than it is.",
+        whatThisDoesNotMean:
+          "This does not mean you are irrational or that your pain isn't valid. It may mean this moment connected to something older.",
+        patterns: [
+          "You may be filling gaps in what you know with the worst-case interpretation.",
+          "The reaction may be coming from somewhere beyond this specific situation.",
+        ],
         nextSteps: [
           "Pause before escalating the situation",
           "Ask: what would I advise a friend feeling this way?",
@@ -2438,9 +2590,17 @@ export const QUIZZES: Quiz[] = [
       },
       {
         level: 5,
-        label: "Strong Signs of Overreaction",
+        label: "Strong escalation pattern",
         description:
-          "Your answers suggest the reaction is significantly bigger than the situation. This often happens when something hits a deeper wound or pattern. That's worth taking seriously.",
+          "Your answers suggest the reaction is significantly bigger than the situation. This often happens when something hits a deeper wound or pattern.",
+        whatThisMeans:
+          "Your reaction may be understandable given your history, but it appears significantly larger than what the current situation warrants.",
+        whatThisDoesNotMean:
+          "This does not mean your feelings are invalid. It means acting from this level of intensity right now may make things harder, not easier.",
+        patterns: [
+          "The emotional response may be connected to older patterns, not just this situation.",
+          "It may be hard right now to separate what happened from what it means.",
+        ],
         nextSteps: [
           "Step back before acting on this feeling",
           "Consider what this situation is really about for you",
