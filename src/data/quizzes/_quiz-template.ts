@@ -1,57 +1,78 @@
-import type { Quiz } from "@/types/quiz";
+/**
+ * Quiz template — copy this object into the QUIZZES array in src/lib/quizzes.ts
+ * to add a new test. Replace all placeholder values.
+ *
+ * See docs/ADDING_NEW_TESTS.md for a full guide.
+ */
 
-// Copy this file when adding a new test.
-// Replace placeholder ids, text, tags, scoring, and result bands.
+import type { Quiz } from "@/types";
+
 export const quizTemplate: Quiz = {
-  id: "new-test-id",
-  slug: "new-test-slug",
-  title: "New Test Title",
-  category: "Conflict & Communication",
-  categoryIcon: "⚡",
-  shortDescription: "Short description for the test card.",
-  longDescription: "Longer summary of what this test reflects on.",
-  estimatedTime: "~5 min",
-  supportsModes: true,
-  availableModes: ["self", "observer"],
-  tags: ["Reflection", "Self + Observer"],
+  slug: "your-quiz-slug",                // URL-safe, hyphenated, unique
+  title: "Your Quiz Title",
+  observerTitle: "Their Version of the Title",  // optional
+  category: "conflict",                  // see CATEGORY_INFO in src/lib/quizzes.ts
+  description: "Short description shown on the quiz card and start page.",
+  observerDescription: "Shown in observer mode. Optional.",
+  hasObserverMode: true,
+  isIdentityQuiz: false,
+  estimatedMinutes: 5,
+  tags: ["tag1", "tag2"],
+  startPageTraits: ["Accountability", "Self-awareness", "Empathy"],  // 3–6 chips
+  traitWeights: {
+    selfAwareness: 3,
+    accountability: 2,
+  },
   questions: [
     {
-      id: "q1",
-      textSelf: "Self mode question text.",
-      textObserver: "Observer mode question text.",
-      helperText: "Optional helper text.",
-      answers: [
-        {
-          id: "a1",
-          label: "Almost never",
-          value: 0,
-          traitEffects: { selfAwareness: 1 },
-        },
+      id: "xyz-1",                       // unique within this quiz (use slug prefix)
+      selfText: "Self-mode question text here.",
+      observerText: "Observer-mode question text here.",
+      helperText: "Optional clarifying note shown below the question.",
+      options: [
+        { id: "a", text: "Almost never",   score: 0, traitDeltas: { accountability: 2 } },
+        { id: "b", text: "Rarely",         score: 1, traitDeltas: { accountability: 1 } },
+        { id: "c", text: "Sometimes",      score: 2, traitDeltas: {} },
+        { id: "d", text: "Often",          score: 3, traitDeltas: { defensiveness: 1 } },
+        { id: "e", text: "Almost always",  score: 4, traitDeltas: { defensiveness: 2 } },
       ],
     },
+    // Add more questions here (6–10 recommended)
   ],
-  scoring: {
-    maxScorePerQuestion: 4,
-  },
-  resultBands: [
+  results: [
     {
-      id: "low-concern",
-      minScore: 0,
-      maxScore: 4,
-      title: "Low concern",
-      level: "Low",
-      summary: "Summary language for the result band.",
-      whatThisMeans: "Describe what the answers may suggest.",
-      whatThisDoesNotMean: "Describe what the result does not prove.",
-      patterns: ["Pattern example one", "Pattern example two"],
-      nextSteps: ["Next step one", "Next step two"],
-      profileImpact: {
-        traits: ["selfAwareness"],
-        note: "What this means for the Pattern Profile.",
-      },
-      recommendedPatternChecks: ["conflict-avoidance-check"],
+      level: 1,
+      label: "Low Concern",
+      description: "Main result text — 1–2 sentences.",
+      whatThisMeans: "What the answers may suggest.",
+      whatThisDoesNotMean: "What the result does not prove.",
+      patterns: ["Pattern example one.", "Pattern example two."],
+      nextSteps: ["Actionable suggestion one.", "Actionable suggestion two."],
+    },
+    {
+      level: 2,
+      label: "Mild Pattern",
+      description: "...",
+      nextSteps: ["...", "..."],
+    },
+    {
+      level: 3,
+      label: "Mixed / Unclear",
+      description: "...",
+      nextSteps: ["...", "..."],
+    },
+    {
+      level: 4,
+      label: "Strong Pattern",
+      description: "...",
+      nextSteps: ["...", "..."],
+    },
+    {
+      level: 5,
+      label: "High Concern",
+      description: "...",
+      nextSteps: ["...", "..."],
     },
   ],
-  traitImpacts: ["selfAwareness"],
-  startPageTraits: ["Self-awareness", "Accountability"],
+  disclaimer: "This quiz is for reflection and pattern recognition. It does not diagnose, prove fault, or label anyone.",
 };

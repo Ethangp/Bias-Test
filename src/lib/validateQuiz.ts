@@ -1,78 +1,87 @@
-import type { Quiz } from "@/types/quiz";
+import type { Quiz } from "@/types";
 
 export interface QuizValidationIssue {
-  quizId: string;
+  quizSlug: string;
   message: string;
 }
 
+/**
+ * Validate a single quiz against the current schema.
+ * Call this during development to catch authoring mistakes before they reach the UI.
+ */
 export function validateQuiz(quiz: Quiz): QuizValidationIssue[] {
   const issues: QuizValidationIssue[] = [];
-
-  if (!quiz.id?.trim()) {
-    issues.push({ quizId: quiz.slug ?? "unknown", message: "Missing quiz id." });
-  }
+  const id = quiz.slug ?? "unknown";
 
   if (!quiz.slug?.trim()) {
-    issues.push({ quizId: quiz.id ?? "unknown", message: "Missing quiz slug." });
+    issues.push({ quizSlug: id, message: "Missing quiz slug." });
   }
 
-  if (!quiz.questions.length) {
-    issues.push({ quizId: quiz.id, message: "Quiz must contain at least one question." });
+  if (!quiz.title?.trim()) {
+    issues.push({ quizSlug: id, message: "Missing quiz title." });
+  }
+
+  if (!quiz.questions?.length) {
+    issues.push({ quizSlug: id, message: "Quiz must contain at least one question." });
   }
 
   const questionIds = new Set<string>();
   quiz.questions.forEach((question) => {
     if (questionIds.has(question.id)) {
-      issues.push({ quizId: quiz.id, message: `Duplicate question id: ${question.id}` });
+      issues.push({ quizSlug: id, message: `Duplicate question id: ${question.id}` });
     }
     questionIds.add(question.id);
 
-    if (quiz.supportsModes) {
-      if (!question.textSelf?.trim()) {
-        issues.push({ quizId: quiz.id, message: `Question ${question.id} missing self text.` });
+    if (quiz.hasObserverMode) {
+      if (!question.selfText?.trim()) {
+        issues.push({ quizSlug: id, message: `Question ${question.id} missing selfText.` });
       }
-      if (!question.textObserver?.trim()) {
-        issues.push({ quizId: quiz.id, message: `Question ${question.id} missing observer text.` });
+      if (!question.observerText?.trim()) {
+        issues.push({ quizSlug: id, message: `Question ${question.id} missing observerText.` });
       }
+    } else if (!question.selfText?.trim()) {
+      issues.push({ quizSlug: id, message: `Question ${question.id} missing selfText.` });
     }
 
-    if (!question.answers.length) {
-      issues.push({ quizId: quiz.id, message: `Question ${question.id} must have answers.` });
+    if (!question.options?.length) {
+      issues.push({ quizSlug: id, message: `Question ${question.id} must have options.` });
     }
 
-    question.answers.forEach((answer) => {
-      if (!answer.traitEffects) {
-        issues.push({ quizId: quiz.id, message: `Answer ${answer.id} on ${question.id} missing traitEffects.` });
+    question.options?.forEach((option) => {
+      if (!option.traitDeltas) {
+        issues.push({
+          quizSlug: id,
+          message: `Option ${option.id} on question ${question.id} missing traitDeltas.`,
+        });
       }
     });
   });
 
-  const sortedBands = [...quiz.resultBands].sort((a, b) => a.minScore - b.minScore);
-  if (sortedBands.length > 0) {
-    let expectedMin = sortedBands[0].minScore;
-    sortedBands.forEach((band) => {
-      if (band.minScore > band.maxScore) {
-        issues.push({ quizId: quiz.id, message: `Invalid score range on band ${band.id}.` });
-      }
-      if (band.minScore > expectedMin) {
-        issues.push({ quizId: quiz.id, message: `Gap before result band ${band.id}.` });
-      }
-      expectedMin = band.maxScore + 1;
-    });
+  if (!quiz.results?.length) {
+    issues.push({ quizSlug: id, message: "Quiz must have at least one result band." });
+  }
+
+  const levels = quiz.results?.map((r) => r.level) ?? [];
+  const uniqueLevels = new Set(levels);
+  if (uniqueLevels.size !== levels.length) {
+    issues.push({ quizSlug: id, message: "Duplicate result levels detected." });
   }
 
   return issues;
 }
 
+/**
+ * Validate all quizzes in the registry and return all issues.
+ */
 export function validateQuizRegistry(quizzes: Quiz[]): QuizValidationIssue[] {
   const issues: QuizValidationIssue[] = [];
-  const ids = new Set<string>();
+  const slugs = new Set<string>();
 
   quizzes.forEach((quiz) => {
-    if (ids.has(quiz.id)) {
-      issues.push({ quizId: quiz.id, message: `Duplicate quiz id: ${quiz.id}` });
+    if (slugs.has(quiz.slug)) {
+      issues.push({ quizSlug: quiz.slug, message: `Duplicate quiz slug: ${quiz.slug}` });
     }
-    ids.add(quiz.id);
+    slugs.add(quiz.slug);
     issues.push(...validateQuiz(quiz));
   });
 
