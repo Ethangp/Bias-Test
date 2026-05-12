@@ -233,6 +233,41 @@ export function getRecommendedQuizSlugs(account: UserAccount): string[] {
     "am-i-overreacting",
     "should-i-confront-them",
     "friendship-one-sided",
+    "do-i-people-please",
+    "am-i-ready-to-date",
+    "is-this-moving-too-fast",
   ];
   return allSlugs.filter((s) => !taken.has(s)).slice(0, 4);
+}
+
+const LAST_QUIZ_SESSION_KEY = "pattern_check_last_quiz_session";
+
+export type LastQuizSession = {
+  slug: string;
+  title: string;
+  updatedAt: string;
+};
+
+/** Called when the user enters the question flow so Home / History can deep-link. */
+export function setLastQuizSession(slug: string, title: string): void {
+  if (typeof window === "undefined") return;
+  const payload: LastQuizSession = {
+    slug,
+    title,
+    updatedAt: new Date().toISOString(),
+  };
+  localStorage.setItem(LAST_QUIZ_SESSION_KEY, JSON.stringify(payload));
+}
+
+export function getLastQuizSession(): LastQuizSession | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(LAST_QUIZ_SESSION_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as LastQuizSession;
+    if (!parsed?.slug?.trim() || !parsed?.title?.trim()) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
 }

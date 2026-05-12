@@ -1,57 +1,60 @@
-import type { Quiz } from "@/types/quiz";
+import type { Quiz } from "@/types";
 
-// Copy this file when adding a new test.
-// Replace placeholder ids, text, tags, scoring, and result bands.
+/**
+ * New tests belong in `src/lib/quizzes.ts` (append to `QUIZZES`).
+ * Copy structure from an existing entry there — not exported from this file.
+ */
 export const quizTemplate: Quiz = {
-  id: "new-test-id",
   slug: "new-test-slug",
   title: "New Test Title",
-  category: "Conflict & Communication",
-  categoryIcon: "⚡",
-  shortDescription: "Short description for the test card.",
-  longDescription: "Longer summary of what this test reflects on.",
-  estimatedTime: "~5 min",
-  supportsModes: true,
-  availableModes: ["self", "observer"],
-  tags: ["Reflection", "Self + Observer"],
+  category: "conflict",
+  description: "What this test helps someone reflect on.",
+  hasObserverMode: false,
+  isIdentityQuiz: false,
+  estimatedMinutes: 5,
+  tags: ["reflection"],
+  traitWeights: { selfAwareness: 1 },
   questions: [
     {
       id: "q1",
-      textSelf: "Self mode question text.",
-      textObserver: "Observer mode question text.",
-      helperText: "Optional helper text.",
-      answers: [
-        {
-          id: "a1",
-          label: "Almost never",
-          value: 0,
-          traitEffects: { selfAwareness: 1 },
-        },
+      selfText: "Question in first person.",
+      observerText: "Same question about someone else (if you use observer mode).",
+      options: [
+        { id: "a", text: "Example option", score: 0, traitDeltas: { selfAwareness: 1 } },
+        { id: "b", text: "Higher score moves result toward higher levels", score: 2, traitDeltas: {} },
       ],
     },
   ],
-  scoring: {
-    maxScorePerQuestion: 4,
-  },
-  resultBands: [
+  results: [
     {
-      id: "low-concern",
-      minScore: 0,
-      maxScore: 4,
-      title: "Low concern",
-      level: "Low",
-      summary: "Summary language for the result band.",
-      whatThisMeans: "Describe what the answers may suggest.",
-      whatThisDoesNotMean: "Describe what the result does not prove.",
-      patterns: ["Pattern example one", "Pattern example two"],
-      nextSteps: ["Next step one", "Next step two"],
-      profileImpact: {
-        traits: ["selfAwareness"],
-        note: "What this means for the Pattern Profile.",
-      },
-      recommendedPatternChecks: ["conflict-avoidance-check"],
+      level: 1,
+      label: "Low concern",
+      description: "What this band suggests.",
+      nextSteps: ["Concrete next step"],
+    },
+    {
+      level: 2,
+      label: "Mild pattern",
+      description: "",
+      nextSteps: [],
+    },
+    {
+      level: 3,
+      label: "Mixed",
+      description: "",
+      nextSteps: [],
+    },
+    {
+      level: 4,
+      label: "Strong pattern",
+      description: "",
+      nextSteps: [],
+    },
+    {
+      level: 5,
+      label: "High concern",
+      description: "",
+      nextSteps: [],
     },
   ],
-  traitImpacts: ["selfAwareness"],
-  startPageTraits: ["Self-awareness", "Accountability"],
 };

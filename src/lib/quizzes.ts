@@ -2918,6 +2918,825 @@ export const QUIZZES: Quiz[] = [
     disclaimer:
       "This quiz reflects your perception of the friendship, not an objective measurement.",
   },
+
+  // 13. Do I People-Please?
+  {
+    slug: "do-i-people-please",
+    title: "Do I People-Please?",
+    observerTitle: "Do They People-Please?",
+    category: "social",
+    description:
+      "Saying yes when you mean no, smoothing things over, and fearing disapproval can become automatic. This quiz helps you notice how strong those patterns are for you right now.",
+    observerDescription:
+      "Think about someone you know well. This quiz helps you reflect on whether they often prioritize harmony over their own needs — not to label them, but to notice patterns.",
+    hasObserverMode: true,
+    isIdentityQuiz: false,
+    estimatedMinutes: 5,
+    tags: ["people-pleasing", "boundaries", "self-awareness", "social"],
+    traitWeights: {
+      pleasingTendency: 3,
+      boundaryStrength: 3,
+      selfAwareness: 2,
+      conflictAvoidance: 2,
+    },
+    questions: [
+      {
+        id: "dipp-1",
+        selfText:
+          "When someone seems disappointed in you, how quickly do you apologize or try to fix it — even when you are not sure you did something wrong?",
+        observerText:
+          "When someone seems disappointed in them, how quickly do they apologize or try to fix it — even when it is not clear they did something wrong?",
+        options: [
+          {
+            id: "a",
+            text: "I usually pause first and ask what happened",
+            score: 0,
+            traitDeltas: { boundaryStrength: 2, selfAwareness: 1 },
+          },
+          {
+            id: "b",
+            text: "Pretty quickly — I want tension to go away",
+            score: 2,
+            traitDeltas: { pleasingTendency: 1, conflictAvoidance: 1 },
+          },
+          {
+            id: "c",
+            text: "Very quickly — I hate the idea that someone is upset with me",
+            score: 3,
+            traitDeltas: { pleasingTendency: 2, boundaryStrength: -1 },
+          },
+          {
+            id: "d",
+            text: "Almost instantly — I will agree or take blame to reset the vibe",
+            score: 4,
+            traitDeltas: { pleasingTendency: 3, accountability: -1, boundaryStrength: -2 },
+          },
+        ],
+      },
+      {
+        id: "dipp-2",
+        selfText: "How often do you say yes when part of you wants to say no?",
+        observerText: "How often do they seem to say yes when they might want to say no?",
+        options: [
+          {
+            id: "a",
+            text: "Rarely — I can usually be honest about my limits",
+            score: 0,
+            traitDeltas: { boundaryStrength: 2, communicationDirectness: 1 },
+          },
+          {
+            id: "b",
+            text: "Sometimes — it depends on the person",
+            score: 1,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "c",
+            text: "Often — I default to yes and deal with it later",
+            score: 3,
+            traitDeltas: { pleasingTendency: 2, boundaryStrength: -1 },
+          },
+          {
+            id: "d",
+            text: "Almost always — saying no feels impossible or cruel",
+            score: 4,
+            traitDeltas: { pleasingTendency: 3, boundaryStrength: -2 },
+          },
+        ],
+      },
+      {
+        id: "dipp-3",
+        selfText:
+          "Do you worry that setting a boundary will make someone pull away or dislike you?",
+        observerText:
+          "Do they seem to worry that setting a boundary will make someone pull away or dislike them?",
+        options: [
+          {
+            id: "a",
+            text: "Not really — I know some people will not like my limits",
+            score: 0,
+            traitDeltas: { boundaryStrength: 2 },
+          },
+          {
+            id: "b",
+            text: "A little — but I still try when it matters",
+            score: 1,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "c",
+            text: "Often — I rehearse worst-case scenarios",
+            score: 3,
+            traitDeltas: { pleasingTendency: 2, attachmentSecurity: -1 },
+          },
+          {
+            id: "d",
+            text: "Constantly — keeping peace often wins over my needs",
+            score: 4,
+            traitDeltas: { pleasingTendency: 3, boundaryStrength: -2 },
+          },
+        ],
+      },
+      {
+        id: "dipp-4",
+        selfText: "When plans clash, whose needs usually win in practice?",
+        observerText: "When plans clash, whose needs usually win for them in practice?",
+        options: [
+          {
+            id: "a",
+            text: "Mine at least as often as theirs — it feels mutual",
+            score: 0,
+            traitDeltas: { boundaryStrength: 1, socialPerception: 1 },
+          },
+          {
+            id: "b",
+            text: "It shifts — sometimes me, sometimes them",
+            score: 1,
+            traitDeltas: {},
+          },
+          {
+            id: "c",
+            text: "Theirs more often — I flex so things stay easy",
+            score: 3,
+            traitDeltas: { pleasingTendency: 2 },
+          },
+          {
+            id: "d",
+            text: "Theirs almost always — I rarely push for what I want",
+            score: 4,
+            traitDeltas: { pleasingTendency: 3, boundaryStrength: -2 },
+          },
+        ],
+      },
+      {
+        id: "dipp-5",
+        selfText:
+          "After a tense moment, do you replay what you could have done to keep the peace?",
+        observerText:
+          "After a tense moment, do they replay what they could have done to keep the peace?",
+        options: [
+          {
+            id: "a",
+            text: "Not much — I move on once things settle",
+            score: 0,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "b",
+            text: "Some — I reflect, but it does not take over my day",
+            score: 1,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "c",
+            text: "Often — I analyze my tone and wording for hours",
+            score: 3,
+            traitDeltas: { pleasingTendency: 2, selfAwareness: -1 },
+          },
+          {
+            id: "d",
+            text: "Almost always — I feel responsible for everyone else's comfort",
+            score: 4,
+            traitDeltas: { pleasingTendency: 3, accountability: -1 },
+          },
+        ],
+      },
+      {
+        id: "dipp-6",
+        selfText:
+          "Do you take on emotional labor other adults could handle themselves (soothing, mediating, explaining)?",
+        observerText:
+          "Do they take on emotional labor other adults could handle themselves?",
+        options: [
+          {
+            id: "a",
+            text: "Rarely — I trust people to manage their own feelings",
+            score: 0,
+            traitDeltas: { boundaryStrength: 2 },
+          },
+          {
+            id: "b",
+            text: "Sometimes — usually with people I care about",
+            score: 1,
+            traitDeltas: { empathy: 1 },
+          },
+          {
+            id: "c",
+            text: "Often — I step in before people even ask",
+            score: 3,
+            traitDeltas: { pleasingTendency: 2, emotionalAvailability: -1 },
+          },
+          {
+            id: "d",
+            text: "Almost always — I feel guilty if I do not help carry it",
+            score: 4,
+            traitDeltas: { pleasingTendency: 3, boundaryStrength: -2 },
+          },
+        ],
+      },
+    ],
+    results: [
+      {
+        level: 1,
+        label: "Low People-Pleasing Signal",
+        description:
+          "Your answers suggest you can hold your needs, limits, and relationships in balance more often than not. You may still people-please in pockets, but it does not look like your default mode.",
+        nextSteps: [
+          "Notice the specific situations where you still over-give — those are your growth edges",
+          "Keep practicing direct, kind nos where it matters",
+        ],
+      },
+      {
+        level: 2,
+        label: "Mild People-Pleasing Tendencies",
+        description:
+          "There are some habits here — especially around tension or disappointment — but you also show moments of clarity and self-protection.",
+        nextSteps: [
+          "Before you auto-apologize, ask: did I actually cross a line?",
+          "Try one small boundary this week and let the discomfort pass without fixing it",
+        ],
+      },
+      {
+        level: 3,
+        label: "Mixed Pattern",
+        description:
+          "People-pleasing shows up in meaningful ways, but it is not one-note. Context, specific relationships, or stress may be driving it more in some areas than others.",
+        nextSteps: [
+          "Name one relationship where you chronically over-function",
+          "Write down what you are afraid will happen if you stop smoothing everything",
+        ],
+      },
+      {
+        level: 4,
+        label: "Strong People-Pleasing Pattern",
+        description:
+          "Your answers point to a recurring pattern: harmony and approval may be costing you authenticity, rest, or self-respect. That is worth taking seriously, not as shame, but as information.",
+        nextSteps: [
+          "Consider therapy or a trusted coach if this feels stuck",
+          "Practice delaying your yes: 'I need to check my calendar and get back to you'",
+        ],
+      },
+      {
+        level: 5,
+        label: "People-Pleasing as a Default",
+        description:
+          "Based on your answers, people-pleasing looks like a central strategy — not an occasional slip. That often links to deep fears about rejection, conflict, or not being enough if you are simply honest.",
+        nextSteps: [
+          "Treat this as a kindness to yourself: you deserve relationships that survive a real no",
+          "Start with low-stakes boundaries and build tolerance for others being briefly disappointed",
+        ],
+      },
+    ],
+    disclaimer:
+      "This quiz is for self-reflection. It does not diagnose personality or mental health conditions.",
+  },
+
+  // 14. Am I Ready to Date Again?
+  {
+    slug: "am-i-ready-to-date",
+    title: "Am I Ready to Date Again?",
+    category: "dating",
+    description:
+      "Jumping back in can be exciting — or a way to avoid feelings. This quiz helps you reflect on whether you are in a grounded place to meet new people with reasonable expectations.",
+    hasObserverMode: false,
+    isIdentityQuiz: false,
+    estimatedMinutes: 5,
+    tags: ["dating", "readiness", "healing", "self-awareness"],
+    traitWeights: {
+      selfAwareness: 3,
+      emotionalAvailability: 3,
+      attachmentSecurity: 2,
+      boundaryStrength: 1,
+    },
+    questions: [
+      {
+        id: "aird-1",
+        selfText: "How do you feel about spending unstructured time alone lately?",
+        observerText: "How do you feel about spending unstructured time alone lately?",
+        options: [
+          {
+            id: "a",
+            text: "Mostly grounded — alone time is not something I dread",
+            score: 0,
+            traitDeltas: { attachmentSecurity: 2, selfAwareness: 1 },
+          },
+          {
+            id: "b",
+            text: "Mixed — sometimes peaceful, sometimes restless",
+            score: 1,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "c",
+            text: "Restless — I scroll or stay busy to avoid the quiet",
+            score: 3,
+            traitDeltas: { emotionalAvailability: -1, attachmentSecurity: -1 },
+          },
+          {
+            id: "d",
+            text: "Alone feels unbearable — I need someone around to feel okay",
+            score: 4,
+            traitDeltas: { attachmentSecurity: -2, emotionalAvailability: -2 },
+          },
+        ],
+      },
+      {
+        id: "aird-2",
+        selfText:
+          "If you dated someone nice for a month and it did not turn into a relationship, how would you likely feel?",
+        observerText:
+          "If you dated someone nice for a month and it did not turn into a relationship, how would you likely feel?",
+        options: [
+          {
+            id: "a",
+            text: "Disappointed, but I would trust it was not the right fit",
+            score: 0,
+            traitDeltas: { emotionalAvailability: 2, selfAwareness: 1 },
+          },
+          {
+            id: "b",
+            text: "A bit bruised — I would need a few days to regroup",
+            score: 1,
+            traitDeltas: {},
+          },
+          {
+            id: "c",
+            text: "Pretty shaken — I would question if something is wrong with me",
+            score: 3,
+            traitDeltas: { attachmentSecurity: -2, selfAwareness: -1 },
+          },
+          {
+            id: "d",
+            text: "Devastated — it would derail my mood or self-worth for a long stretch",
+            score: 4,
+            traitDeltas: { attachmentSecurity: -3, emotionalAvailability: -2 },
+          },
+        ],
+      },
+      {
+        id: "aird-3",
+        selfText:
+          "Be honest: is dating partly a way to distract from stress, grief, loneliness, or unfinished business with an ex?",
+        observerText:
+          "Be honest: is dating partly a way to distract from stress, grief, loneliness, or unfinished business with an ex?",
+        options: [
+          {
+            id: "a",
+            text: "Not really — I am facing those things in other ways too",
+            score: 0,
+            traitDeltas: { selfAwareness: 2 },
+          },
+          {
+            id: "b",
+            text: "A little — but it is not the main driver",
+            score: 1,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "c",
+            text: "Partly — swiping or chatting does numb the hard stuff",
+            score: 3,
+            traitDeltas: { emotionalAvailability: -2, selfAwareness: -1 },
+          },
+          {
+            id: "d",
+            text: "Mostly yes — dating is how I cope right now",
+            score: 4,
+            traitDeltas: { emotionalAvailability: -3, selfAwareness: -2 },
+          },
+        ],
+      },
+      {
+        id: "aird-4",
+        selfText:
+          "If you had a serious breakup or loss, have you had real space to process it (not just time on a calendar)?",
+        observerText:
+          "If you had a serious breakup or loss, have you had real space to process it (not just time on a calendar)?",
+        options: [
+          {
+            id: "a",
+            text: "Yes — or it does not apply / was long ago and integrated",
+            score: 0,
+            traitDeltas: { selfAwareness: 2, emotionalAvailability: 1 },
+          },
+          {
+            id: "b",
+            text: "Somewhat — I have talked about it but pockets still hurt",
+            score: 1,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "c",
+            text: "Not really — I moved on quickly to new people or work",
+            score: 3,
+            traitDeltas: { emotionalAvailability: -2 },
+          },
+          {
+            id: "d",
+            text: "I am still in the thick of it — I have not metabolized it",
+            score: 4,
+            traitDeltas: { emotionalAvailability: -3, attachmentSecurity: -1 },
+          },
+        ],
+      },
+      {
+        id: "aird-5",
+        selfText:
+          "Can you name what you want from dating besides 'someone' or 'not being alone'?",
+        observerText:
+          "Can you name what you want from dating besides 'someone' or 'not being alone'?",
+        options: [
+          {
+            id: "a",
+            text: "Yes — values, pace, and partnership style are pretty clear",
+            score: 0,
+            traitDeltas: { selfAwareness: 2, communicationDirectness: 1 },
+          },
+          {
+            id: "b",
+            text: "Somewhat — I have a general direction, not a checklist",
+            score: 1,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "c",
+            text: "Vague — I mostly want to feel chosen or excited",
+            score: 3,
+            traitDeltas: { selfAwareness: -1, attachmentSecurity: -1 },
+          },
+          {
+            id: "d",
+            text: "No — I am mainly trying to fill a hole",
+            score: 4,
+            traitDeltas: { selfAwareness: -2, emotionalAvailability: -2 },
+          },
+        ],
+      },
+      {
+        id: "aird-6",
+        selfText:
+          "How do you respond when attraction shows up fast and someone wants to move quickly?",
+        observerText:
+          "How do you respond when attraction shows up fast and someone wants to move quickly?",
+        options: [
+          {
+            id: "a",
+            text: "I can enjoy chemistry and still pace myself on intimacy and commitment",
+            score: 0,
+            traitDeltas: { boundaryStrength: 2, selfAwareness: 1 },
+          },
+          {
+            id: "b",
+            text: "I get swept up sometimes but can course-correct",
+            score: 1,
+            traitDeltas: {},
+          },
+          {
+            id: "c",
+            text: "I often match their speed even when part of me hesitates",
+            score: 3,
+            traitDeltas: { boundaryStrength: -2, pleasingTendency: 1 },
+          },
+          {
+            id: "d",
+            text: "I fuse fast — it is hard to tell where I end and they begin",
+            score: 4,
+            traitDeltas: { attachmentSecurity: -2, boundaryStrength: -2 },
+          },
+        ],
+      },
+    ],
+    results: [
+      {
+        level: 1,
+        label: "You Seem Reasonably Grounded",
+        description:
+          "Your answers suggest you are not leaning on dating as a sole source of stability. You can tolerate alone time, absorb disappointment, and name what you want with some clarity.",
+        nextSteps: [
+          "Keep checking in with yourself as you meet people — readiness is not permanent",
+          "Notice early red flags without assuming you 'should' be fine with everything",
+        ],
+      },
+      {
+        level: 2,
+        label: "Mostly Ready With Normal Soft Spots",
+        description:
+          "There are understandable vulnerabilities — who does not have them? — but nothing here screams that dating is primarily avoidance. A little pacing and self-honesty go a long way.",
+        nextSteps: [
+          "Name one non-negotiable before your next date",
+          "Plan restorative alone time between social weeks",
+        ],
+      },
+      {
+        level: 3,
+        label: "Mixed — Worth Slowing Down",
+        description:
+          "You might be ready for light connection, but parts of you may still need care — especially around self-worth, grief, or emotional intensity. That is not a moral failing; it is timing.",
+        nextSteps: [
+          "Try slower, lower-stakes meetups before big emotional investment",
+          "Talk to a friend or therapist about what you are hoping dating will fix",
+        ],
+      },
+      {
+        level: 4,
+        label: "Probably Not Fully Ready Yet",
+        description:
+          "Based on your answers, dating may be doing emotional heavy lifting it cannot safely carry — soothing loneliness, proving worth, or skipping unfinished pain. That often leads to painful loops.",
+        nextSteps: [
+          "Consider a deliberate pause from apps while you strengthen other supports",
+          "Journal what you fear will happen if you stop pursuing new people for 30 days",
+        ],
+      },
+      {
+        level: 5,
+        label: "Pause May Be the Kinder Choice",
+        description:
+          "Your answers suggest dating right now could reinforce patterns that hurt you — especially if alone time feels unbearable or rejection feels catastrophic. Healing first is not 'falling behind.'",
+        nextSteps: [
+          "Prioritize sleep, movement, and people who love you without romance",
+          "If you can access support, this is a great window for deeper work",
+        ],
+      },
+    ],
+    disclaimer:
+      "This quiz cannot tell you what to do with your love life. It only reflects patterns in how you answered today.",
+  },
+
+  // 15. Is This Relationship Moving Too Fast?
+  {
+    slug: "is-this-moving-too-fast",
+    title: "Is This Relationship Moving Too Fast?",
+    observerTitle: "Is Their Relationship Moving Too Fast?",
+    category: "dating",
+    description:
+      "Intensity can feel amazing — and it can also blur pacing, boundaries, and compatibility. This quiz helps you reflect on whether things are unfolding in a way you can still steer.",
+    observerDescription:
+      "Think about someone you care about and the new person they are seeing. This quiz helps you reflect on pacing from the outside — with humility, since you do not know the full story.",
+    hasObserverMode: true,
+    isIdentityQuiz: false,
+    estimatedMinutes: 5,
+    tags: ["dating", "pace", "boundaries", "situationship"],
+    traitWeights: {
+      boundaryStrength: 2,
+      selfAwareness: 3,
+      attachmentSecurity: 2,
+      socialPerception: 1,
+    },
+    questions: [
+      {
+        id: "itmtf-1",
+        selfText:
+          "Compared to how long you have actually known each other, how intense does this connection already feel?",
+        observerText:
+          "Compared to how long they have known this person, how intense does the connection already seem?",
+        options: [
+          {
+            id: "a",
+            text: "The intensity matches the time — it feels earned",
+            score: 0,
+            traitDeltas: { selfAwareness: 2, socialPerception: 1 },
+          },
+          {
+            id: "b",
+            text: "A little fast, but not alarming — we are checking in",
+            score: 1,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "c",
+            text: "Pretty fast — big feelings arrived quickly",
+            score: 3,
+            traitDeltas: { attachmentSecurity: -1, selfAwareness: -1 },
+          },
+          {
+            id: "d",
+            text: "Extremely fast — it already feels like a long-term bond",
+            score: 4,
+            traitDeltas: { attachmentSecurity: -2, boundaryStrength: -1 },
+          },
+        ],
+      },
+      {
+        id: "itmtf-2",
+        selfText:
+          "Have big steps (labels, keys, trips, merging friend groups, major future talk) shown up very early?",
+        observerText:
+          "Has their relationship with this person already included big steps (labels, keys, trips, merging friend groups, major future talk) unusually early?",
+        options: [
+          {
+            id: "a",
+            text: "No — those are either absent or unfolding slowly",
+            score: 0,
+            traitDeltas: { boundaryStrength: 1 },
+          },
+          {
+            id: "b",
+            text: "Hints of it, but we have not locked anything in",
+            score: 1,
+            traitDeltas: {},
+          },
+          {
+            id: "c",
+            text: "Some — one or two big steps happened within weeks",
+            score: 3,
+            traitDeltas: { selfAwareness: -1, attachmentSecurity: -1 },
+          },
+          {
+            id: "d",
+            text: "Yes — several major steps very quickly",
+            score: 4,
+            traitDeltas: { attachmentSecurity: -2, boundaryStrength: -2 },
+          },
+        ],
+      },
+      {
+        id: "itmtf-3",
+        selfText:
+          "Do you still have space for friends, work, and solo routines — or has the new relationship absorbed most of your bandwidth?",
+        observerText:
+          "Do they still seem to have space for friends, work, and solo routines?",
+        options: [
+          {
+            id: "a",
+            text: "Life still feels balanced — excitement has not erased everything else",
+            score: 0,
+            traitDeltas: { boundaryStrength: 2, selfAwareness: 1 },
+          },
+          {
+            id: "b",
+            text: "A bit lopsided, but I can pull back when I try",
+            score: 1,
+            traitDeltas: {},
+          },
+          {
+            id: "c",
+            text: "Most bandwidth goes to them — I cancel or postpone other things",
+            score: 3,
+            traitDeltas: { pleasingTendency: 1, boundaryStrength: -2 },
+          },
+          {
+            id: "d",
+            text: "They are almost always on my mind — everything else feels secondary",
+            score: 4,
+            traitDeltas: { attachmentSecurity: -2, boundaryStrength: -2 },
+          },
+        ],
+      },
+      {
+        id: "itmtf-4",
+        selfText:
+          "If you asked to slow down a little, how do you imagine they would respond?",
+        observerText:
+          "If they asked to slow down a little, how do you imagine the other person would respond?",
+        options: [
+          {
+            id: "a",
+            text: "Curious and respectful — we could talk it through",
+            score: 0,
+            traitDeltas: { emotionalAvailability: 2, communicationDirectness: 1 },
+          },
+          {
+            id: "b",
+            text: "A little disappointed, but not punishing",
+            score: 1,
+            traitDeltas: {},
+          },
+          {
+            id: "c",
+            text: "Defensive, withdrawn, or guilt-inducing",
+            score: 3,
+            traitDeltas: { socialPerception: -1, boundaryStrength: -1 },
+          },
+          {
+            id: "d",
+            text: "I am afraid to even ask — it might blow things up",
+            score: 4,
+            traitDeltas: { boundaryStrength: -2, conflictAvoidance: 2 },
+          },
+        ],
+      },
+      {
+        id: "itmtf-5",
+        selfText:
+          "How much do you really know about their values, conflict style, and day-to-day reliability?",
+        observerText:
+          "From what you can see, how much do they really know about this person's values and reliability?",
+        options: [
+          {
+            id: "a",
+            text: "A solid amount — we have seen stress, not just fun",
+            score: 0,
+            traitDeltas: { selfAwareness: 2, socialPerception: 1 },
+          },
+          {
+            id: "b",
+            text: "Some — still learning, but not only highlight reels",
+            score: 1,
+            traitDeltas: { selfAwareness: 1 },
+          },
+          {
+            id: "c",
+            text: "Not much — it has mostly been chemistry and fantasy",
+            score: 3,
+            traitDeltas: { selfAwareness: -1, attachmentSecurity: -1 },
+          },
+          {
+            id: "d",
+            text: "Very little — we skipped straight to deep enmeshment",
+            score: 4,
+            traitDeltas: { attachmentSecurity: -2, selfAwareness: -2 },
+          },
+        ],
+      },
+      {
+        id: "itmtf-6",
+        selfText:
+          "Does part of you feel uneasy about the pace even while another part loves the rush?",
+        observerText:
+          "Does part of them seem uneasy about the pace even while they also seem thrilled?",
+        options: [
+          {
+            id: "a",
+            text: "Not really — the pace mostly feels right in my body",
+            score: 0,
+            traitDeltas: { selfAwareness: 2 },
+          },
+          {
+            id: "b",
+            text: "Occasionally — I chalk it up to excitement",
+            score: 1,
+            traitDeltas: {},
+          },
+          {
+            id: "c",
+            text: "Often — I ignore the uneasy part because the highs are strong",
+            score: 3,
+            traitDeltas: { selfAwareness: -1, emotionalAvailability: -1 },
+          },
+          {
+            id: "d",
+            text: "Constantly — but I do not know how to slow it without losing them",
+            score: 4,
+            traitDeltas: { selfAwareness: -2, boundaryStrength: -2 },
+          },
+        ],
+      },
+    ],
+    results: [
+      {
+        level: 1,
+        label: "Pace Looks Reasonable",
+        description:
+          "Based on your answers, the speed of this connection seems roughly in proportion to how well you know each other. You still have other life areas in view, and slowing down does not feel dangerous to name.",
+        nextSteps: [
+          "Keep building intimacy alongside real-world information, not instead of it",
+          "Celebrate good chemistry without assuming it guarantees compatibility",
+        ],
+      },
+      {
+        level: 2,
+        label: "A Little Fast, But Manageable",
+        description:
+          "There is some acceleration — normal in new attraction — but you still have handles: balance, curiosity, and some room to talk about pacing without catastrophe.",
+        nextSteps: [
+          "Schedule a few non-romantic obligations to anchor your week",
+          "Share one honest preference about pace and see how they respond",
+        ],
+      },
+      {
+        level: 3,
+        label: "Mixed — Check Your Boundaries",
+        description:
+          "The relationship may not be 'wrong,' but the speed is creating blind spots. Big feelings arrived before sturdy knowledge of each other — that is a common setup for whiplash later.",
+        nextSteps: [
+          "Name one thing you will not merge yet (sleepovers, keys, friend intros, etc.)",
+          "Notice if slowing down feels like rejection — that is data too",
+        ],
+      },
+      {
+        level: 4,
+        label: "Probably Too Fast",
+        description:
+          "Your answers suggest several classic signs of rushed bonding: early major steps, shrinking outside life, fantasy ahead of facts, or fear about naming limits. Worth slowing intentionally.",
+        nextSteps: [
+          "Try a two-week experiment: one fewer night together, more sleep and friends",
+          "If they cannot tolerate a slower pace, that is important information",
+        ],
+      },
+      {
+        level: 5,
+        label: "High-Speed Merge Risk",
+        description:
+          "This looks less like healthy momentum and more like fusion or pressure. When pace outruns trust and compatibility checks, people often wake up in deep enmeshment or painful endings.",
+        nextSteps: [
+          "Tell someone you trust the full timeline — outside eyes help",
+          "If you feel unable to slow down alone, consider professional support",
+        ],
+      },
+    ],
+    disclaimer:
+      "Fast is not automatically bad, and slow is not automatically safe. This quiz only reflects the patterns you described today.",
+  },
 ];
 
 export function getQuizBySlug(slug: string): Quiz | undefined {
