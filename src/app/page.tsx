@@ -12,6 +12,9 @@ const FEATURED_SLUGS = [
   "are-we-compatible",
   "am-i-overreacting",
   "should-i-confront-them",
+  "do-i-people-please",
+  "am-i-ready-to-date",
+  "is-this-moving-too-fast",
 ];
 
 export default function HomePage() {

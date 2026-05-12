@@ -233,6 +233,9 @@ export function getRecommendedQuizSlugs(account: UserAccount): string[] {
     "am-i-overreacting",
     "should-i-confront-them",
     "friendship-one-sided",
+    "do-i-people-please",
+    "am-i-ready-to-date",
+    "is-this-moving-too-fast",
   ];
   return allSlugs.filter((s) => !taken.has(s)).slice(0, 4);
 }

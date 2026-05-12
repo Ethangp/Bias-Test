@@ -1,20 +1,11 @@
-import type { Quiz } from "@/types/quiz";
-import { amITheProblemQuiz } from "./am-i-the-problem";
-import { amIOverreactingQuiz } from "./am-i-overreacting";
-import { isMyFriendToxicQuiz } from "./is-my-friend-toxic";
-import { isThisAPreferenceOrBiasQuiz } from "./is-this-a-preference-or-bias";
+import type { Quiz } from "@/types";
+import { QUIZZES, getQuizBySlug as getQuizFromLib } from "@/lib/quizzes";
 
-// New quiz files should be added here as the platform expands.
-// The quiz engine should consume this registry instead of hardcoding pages.
-export const QUIZ_REGISTRY: Quiz[] = [
-  amITheProblemQuiz,
-  isMyFriendToxicQuiz,
-  isThisAPreferenceOrBiasQuiz,
-  amIOverreactingQuiz,
-];
+/** Single source of truth: quiz definitions live in `@/lib/quizzes`. */
+export const QUIZ_REGISTRY: Quiz[] = QUIZZES;
 
 export function getQuizBySlug(slug: string): Quiz | undefined {
-  return QUIZ_REGISTRY.find((quiz) => quiz.slug === slug);
+  return getQuizFromLib(slug);
 }
 
 export function getQuizCategories(): string[] {
