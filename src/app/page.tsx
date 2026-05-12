@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HomeDashboardModules from "@/components/home/HomeDashboardModules";
 import { CATEGORY_INFO } from "@/lib/quizzes";
 import { QUIZ_REGISTRY as QUIZZES } from "@/data/quizzes";
 
@@ -45,7 +46,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/quizzes"
+              href="/tests"
               className="bg-stone-900 text-white px-8 py-3.5 rounded-full font-medium text-base hover:bg-stone-700 transition-colors"
             >
               Start a Test
@@ -59,6 +60,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <HomeDashboardModules />
 
       {/* How It Works */}
       <section className="py-16 px-4">
@@ -110,7 +113,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-stone-800">Featured Tests</h2>
             <Link
-              href="/quizzes"
+              href="/tests"
               className="text-sm text-stone-500 hover:text-stone-800 transition-colors"
             >
               View all →
@@ -173,7 +176,7 @@ export default function HomePage() {
               return (
                 <Link
                   key={cat}
-                  href={`/quizzes?category=${cat}`}
+                  href={`/tests?category=${cat}`}
                   className="group bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl p-5 transition-colors"
                 >
                   <div className="text-2xl mb-2">{info.emoji}</div>

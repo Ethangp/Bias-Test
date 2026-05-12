@@ -104,7 +104,7 @@ export default function DashboardPage() {
 
         <div className="mt-8">
           <Link
-            href="/quizzes"
+            href="/tests"
             className="text-stone-500 hover:text-stone-700 underline text-sm"
           >
             Take a quiz without saving →
@@ -195,7 +195,11 @@ export default function DashboardPage() {
           ) : (
             <div className="space-y-3">
               {highTraits.map((trait) => (
-                <div key={trait.key}>
+                <Link
+                  key={trait.key}
+                  href={`/dashboard/trait/${trait.key}`}
+                  className="block rounded-lg p-1 -m-1 hover:bg-stone-50 transition-colors"
+                >
                   <div className="flex items-center justify-between text-sm mb-1">
                     <span className="text-stone-700">{trait.label}</span>
                     <span className="text-stone-400 text-xs">{trait.score}%</span>
@@ -214,7 +218,7 @@ export default function DashboardPage() {
                       }}
                     />
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}
@@ -359,7 +363,7 @@ export default function DashboardPage() {
       {/* All Tests Link */}
       <div className="text-center mb-8">
         <Link
-          href="/quizzes"
+          href="/tests"
           className="bg-stone-900 text-white px-8 py-3 rounded-full font-medium hover:bg-stone-700 transition-colors text-sm"
         >
           Take a Test
@@ -371,12 +375,15 @@ export default function DashboardPage() {
         <h2 className="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-4">
           Privacy Controls
         </h2>
-        <div className="space-y-2">
-          <p className="text-xs text-stone-400 leading-relaxed mb-4">
-            All data is stored locally in your browser. Nothing is sent to any
-            server. You can delete your profile or individual results at any
-            time.
-          </p>
+        <p className="text-xs text-stone-400 leading-relaxed mb-4">
+          All data is stored locally in your browser. Nothing is sent to any
+          server. You can delete your profile or individual results at any
+          time. For exports and share controls, open{" "}
+          <Link href="/settings" className="underline hover:text-stone-600">
+            Settings
+          </Link>
+          .
+        </p>
           {showDeleteAccountConfirm ? (
             <div className="bg-red-50 border border-red-200 rounded-xl p-4">
               <p className="text-sm text-red-700 mb-3">
@@ -406,7 +413,6 @@ export default function DashboardPage() {
               Delete my profile and all results
             </button>
           )}
-        </div>
       </div>
     </div>
   );
