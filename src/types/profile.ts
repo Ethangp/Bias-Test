@@ -1,4 +1,4 @@
-import type { TraitKey, QuizMode } from "./quiz";
+import type { TraitKey, QuizMode } from "./index";
 
 export interface TraitScore {
   key: TraitKey;
